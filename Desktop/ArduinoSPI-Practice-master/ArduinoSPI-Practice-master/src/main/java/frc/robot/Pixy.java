@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 public class Pixy  {
 	SPI pixy;
 	Port port = Port.kOnboardCS0;
-	ByteBuffer buffer = ByteBuffer.allocateDirect(4);
+	ByteBuffer buffer = ByteBuffer.allocateDirect(1);
 	//Requires a direct buffer, must use allocateDirect.
 	//
 
@@ -26,13 +26,14 @@ public class Pixy  {
 
 	public void pixyRead() {
 
-		//pixy.read(true, buffer, 4);
+		pixy.read(true, buffer, 1);
 
 	
-		for (int i = 0; i<4; i++){
+		for (int i = 0; i<1; i++){
 			System.out.println(i + " " + buffer.get(i));
 		}
-		pixy.readAutoReceivedData(buffer, 0, 100);
+		pixy.resetAccumulator();
+		//pixy.readAutoReceivedData(buffer, 0, 100);
 		
 	}
 
